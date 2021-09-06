@@ -65,9 +65,23 @@ int * transpose(int *array, int rows, int columns) {
     return transpose_array;
 }
 
-int *multiplyMatrices(int *first_array,int first_row, int first_column, int *second_array, int second_row, int second_column) {
-    
-    
-    
+int *multiplyMatrices(int *first_array, int first_row, int first_column, int *second_array, int second_row, int second_column) {
 
+    if (first_column == second_row) {
+        int aux;
+        int *result = (int*) malloc(first_row * second_column * sizeof (int));
+        for (int i = 0; i < first_row; i++) {
+            for (int j = 0; j < second_column; j++) {
+                aux = 0;
+                for (int x = 0; x < first_column; x++) {
+                    aux += (*(first_array + i * first_column + x)) * (*(second_array + x * second_column + j));
+                }
+                *(result + i * second_column + j) = aux;
+            }
+        }
+        return result;
+    } else {
+        puts("dimensiones incorrectas");
+        exit(0);
+    }
 }
