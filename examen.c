@@ -64,3 +64,10 @@ int * transpose(int *array, int rows, int columns) {
 
     return transpose_array;
 }
+
+int *multiplyMatrices(int *first_array,int first_row, int first_column, int *second_array, int second_row, int second_column) {
+    
+    
+    
+
+}
