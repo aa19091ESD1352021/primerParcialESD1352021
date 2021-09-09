@@ -78,11 +78,11 @@ char *readcsv(const char *path) {
     puts("");
     fclose(pointer_file);
     return arrays;
-    
+
 }
 
 const char * integrantes() {
-    static char grupo[] = "AA19091,RF18025";
+    static char grupo[] = "#AA19091,#RF18025";
     return grupo;
 }
 
@@ -134,7 +134,7 @@ int *generateMatrices(const char * path) {
 
     }
 
-    
+
     char temp[BUF_SIZE];
     char aux;
     char *character;
