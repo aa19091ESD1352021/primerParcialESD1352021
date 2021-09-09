@@ -11,13 +11,22 @@ int clean_suite(void) {
     return 0;
 }
 
-void testTranspose() {
-    int array[3][2] = {1, 2, 3, 4, 5, 6};
-    int filas = 3;
-    int columnas = 2;
-    int *result = transpose(&array[0][0], filas, columnas);
-    CU_ASSERT_PTR_NOT_NULL(result);
-    CU_ASSERT(*(result + 0 * 3 + 1) == 3);
+void testMultiplyMatrices() {
+    
+    int first_array[2][2] = {1,2,3,4};
+   
+    
+    int second_array[2][2] = {1,2,3,4};
+   
+   
+    int *result = multiplyMatrices(&first_array[0][0],2, 2,&second_array[0][0],2,2);
+    
+    CU_ASSERT_PTR_NULL(result);
+    
+    
+    
+    
+    
 }
 
 int main() {
@@ -28,14 +37,14 @@ int main() {
         return CU_get_error();
 
     /* Add a suite to the registry */
-    pSuite = CU_add_suite("newcunittest1", init_suite, clean_suite);
+    pSuite = CU_add_suite("newcunittest3", init_suite, clean_suite);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testTranspose", testTranspose))) {
+    if ((NULL == CU_add_test(pSuite, "testMultiplyMatrices", testMultiplyMatrices))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
