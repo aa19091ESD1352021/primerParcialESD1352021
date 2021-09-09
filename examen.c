@@ -78,7 +78,7 @@ char *readcsv(const char *path) {
     puts("");
     fclose(pointer_file);
     return arrays;
-
+    
 }
 
 const char * integrantes() {
@@ -134,7 +134,7 @@ int *generateMatrices(const char * path) {
 
     }
 
-
+    
     char temp[BUF_SIZE];
     char aux;
     char *character;
