@@ -44,6 +44,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${TESTDIR}/TestFiles/f3 \
+	${TESTDIR}/TestFiles/f4 \
 	${TESTDIR}/TestFiles/f1 \
 	${TESTDIR}/TestFiles/f2
 
@@ -51,7 +52,8 @@ TESTFILES= \
 TESTOBJECTFILES= \
 	${TESTDIR}/tests/newcunittest.o \
 	${TESTDIR}/tests/newcunittest1.o \
-	${TESTDIR}/tests/newcunittest4.o
+	${TESTDIR}/tests/newcunittest4.o \
+	${TESTDIR}/tests/newcunittest5.o
 
 # C Compiler Flags
 CFLAGS=
@@ -98,6 +100,10 @@ ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/newcunittest4.o ${OBJECTFILES:%.o=%_no
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS}   -lcunit 
 
+${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/newcunittest5.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS}   -lcunit 
+
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/newcunittest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lcunit 
@@ -111,6 +117,12 @@ ${TESTDIR}/tests/newcunittest4.o: tests/newcunittest4.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest4.o tests/newcunittest4.c
+
+
+${TESTDIR}/tests/newcunittest5.o: tests/newcunittest5.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest5.o tests/newcunittest5.c
 
 
 ${TESTDIR}/tests/newcunittest.o: tests/newcunittest.c 
@@ -156,6 +168,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f3 || true; \
+	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	else  \
